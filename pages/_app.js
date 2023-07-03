@@ -1,5 +1,19 @@
 import '@/styles/globals.css'
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+/**
+ * Importo para usar la autenticación.
+ */
+import Navbar from '../components/Navbar'
+import '../components/Navbar.css'
+import { SessionProvider } from 'next-auth/react';
+
+export default function App({ session, Component, pageProps }) {
+  
+  return (
+    <SessionProvider session={session}>
+      <Navbar />
+      <Component {...pageProps} />
+    </SessionProvider>
+  )
+  
 }
